@@ -1,0 +1,89 @@
+LXC
+
+it is an open source container platform 
+used for managing containers
+
+
+
+cgroups - limits the resources which a process or set of processes can use these resources could be CPU,Memory,Network I/O or access to filesystem
+
+Namespaces - provides process isolation, complete isolation of containers, separate file system.
+
+There are 6 types of namespaces:
+1. mount ns - for file system.
+2. UTS(Unique time sharing) ns- which checks for different hostnames of running containers
+3. IPC ns - interprocess communication
+4. Network ns- takes care of different ip allocation to different containers
+5. PID ns - process id isolation
+6. user ns- different username(uid)
+
+
+-------------------------LXC COMMANDS-----------------------------------
+
+#TO list available images in lxc
+
+lxc image list images:
+
+#To list containers
+
+lxc list
+
+#create container
+
+lxc launch images:ubuntu/focal ubuntu
+
+# Enter into container
+lxc exec ubuntu bash
+
+# edit something inside container
+
+lxc exec ubuntu -- apt install apache2
+
+# stop container
+
+lxc stop containername
+
+# start container
+
+lxc start containername
+
+we can restart also
+
+lxc restart containername
+
+# To delete container
+
+lxc delete containername
+
+# TO create snapshot
+
+lxc snapshot containername snapshotname
+
+# TO see details about snapshot
+
+lxc info ubuntu
+
+# To delete snapshot
+
+lxc delete ubuntu/mysnap1
+
+lxc delete containername/snapshotname
+
+# To start container on boot
+
+ lxc config set ubuntu boot.autostart 1
+
+# To limit memory on container
+
+lxc config set containername limits.memory 1GB
+
+# to show details about container
+
+lxc config show containername
+
+
+# to delay some container on start boot
+
+lxc config set containername boot.autostart.delay 30
+
+
